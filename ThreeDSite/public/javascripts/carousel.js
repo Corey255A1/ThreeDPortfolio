@@ -1,3 +1,5 @@
+//WunderVision 2020
+//A 3D Carousel of DIVs using Three.JS
 import { CSS3DObject } from '/javascripts/threejs/examples/jsm/renderers/CSS3DRenderer.js';
 import * as THREE from '/javascripts/threejs/build/three.module.js';
 export class Carousel {
@@ -31,43 +33,6 @@ export class Carousel {
         this.group.position.set(position.x, 0, position.y);
         this.group.rotateY(rotation.y);
         this.scene.add(this.group);
-         
-        //let wall = document.createElement("div");
-        //wall.style.textAlign = "center";
-        //wall.style.fontSize = '1rem';
-        //wall.style.width = (500 + 2) + 'px';
-        //wall.style.height = (500 + 2) + 'px';
-        //wall.style.backgroundColor = 'teal';
-        //let object = new CSS3DObject(wall);
-        //object.position.set(0, 0, 500 - Math.cos(0) * 500);
-        //object.rotation.x = 0;
-        //this.scene.add(object);
-
-        //wall = document.createElement("div");
-        //wall.style.textAlign = "center";
-        //wall.style.fontSize = '1rem';
-        //wall.style.width = (500 + 2) + 'px';
-        //wall.style.height = (500 + 2) + 'px';
-        //wall.style.backgroundColor = 'yellow';
-        //object = new CSS3DObject(wall);
-        
-        //object.rotation.x = 2 * Math.PI / 8;
-        ////soh cah toa        
-        //object.position.set(0, Math.sin(2 * Math.PI / 8) * 500, 500 - Math.cos(2 * Math.PI / 8) * 500);//(2 * 500) + (Math.cos(2 * Math.PI / 8)*500)/2
-        //this.scene.add(object);
-
-        //wall = document.createElement("div");
-        //wall.style.textAlign = "center";
-        //wall.style.fontSize = '1rem';
-        //wall.style.width = (500 + 2) + 'px';
-        //wall.style.height = (500 + 2) + 'px';
-        //wall.style.backgroundColor = 'pink';
-        //object = new CSS3DObject(wall);
-
-        //object.rotation.x = 2*2 * Math.PI / 8;
-        ////soh cah toa        
-        //object.position.set(0, Math.sin(4 * Math.PI / 8)*500, 500-(Math.cos(4 * Math.PI / 8)*500));
-        //this.scene.add(object);
     }
 
     animate() {
