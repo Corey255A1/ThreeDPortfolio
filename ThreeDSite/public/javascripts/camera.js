@@ -6,28 +6,20 @@ export class CameraMover {
         this.state = 'stop';
         this.speed = movespeed;
         this.stepCount = 0;
-        this.currentRoute = undefined;
-        this.routePointIdx = 0;
-        this.routePoint = undefined;
+        this.commandList = undefined;
+        this.currentCommandIdx = 0;
+        this.currentCommand = undefined;
     }
-    getNextPoint() {
-        if (this.currentRoute !== undefined) {
-            let nextIdx = 0;
-            if ((this.routePointIdx + 1) < this.currentRoute.length) {
-                nextIdx = this.routePointIdx + 1;
-            }
-            return { idx: nextIdx, point: this.currentRoute[nextIdx] };
-        }
-        return undefined;
+    getPosition() {
+        return { x: this.camera.position.x, y: this.camera.position.z, o: this.heading };
     }
     nextState() {
-        let next = this.getNextPoint();
-        if (next !== undefined) {
-            this.routePoint = next.point;
-            this.routePointIdx = next.idx;
-            this.state = this.routePoint.type;
+        if (this.commandList !== undefined && this.commandList.length>0) {
+            this.currentCommandIdx = (this.currentCommandIdx + 1) % this.commandList.length;
+            this.currentCommand = this.commandList[this.currentCommandIdx];
+            this.state = this.currentCommand.type;
             if (this.state === 'heading') {
-                this.nextHeading = this.routePoint.value;
+                this.nextHeading = this.currentCommand.value;
             }
         }
         else {
@@ -36,11 +28,9 @@ export class CameraMover {
 
     }
     setRoute(route) {
-        this.currentRoute = route;
-        this.camera.rotation.x = 0;
-        this.camera.rotation.y = 0;
-        this.camera.rotation.z = 0;
-        this.routePointIdx = -1;
+        if (this.state !== 'stop') { return; }
+        this.commandList = route;
+        this.currentCommandIdx = -1;
         this.nextState();
     }
     setPosition(routepoint) {
@@ -48,19 +38,18 @@ export class CameraMover {
         this.nextHeading = routepoint.o;
         this.heading = this.nextHeading;
         this.camera.rotation.y = this.heading * -(Math.PI / 2);
-        //this.camera.rotation.y = this.heading * -(Math.PI/2);
     }
     doCommand(routepoint) {
-        this.routePoint = routepoint;
-        this.state = this.routePoint.type;
+        this.currentCommand = routepoint;
+        this.state = this.currentCommand.type;
         if (this.state === 'heading') {
-            this.nextHeading = this.routePoint.value;
+            this.nextHeading = this.currentCommand.value;
         }
     }
     update() {
         switch (this.state) {
             case 'set': {
-                this.setPosition(this.routePoint.value);
+                this.setPosition(this.currentCommand.value);
                 this.nextState();
             } break;
             case 'heading': {
@@ -86,7 +75,7 @@ export class CameraMover {
                     case 3: this.camera.position.x -= this.speed; break;
                 }
                 this.stepCount += this.speed;
-                if (this.stepCount >= this.routePoint.value) {
+                if (this.stepCount >= this.currentCommand.value) {
                     this.stepCount = 0;
                     this.nextState();
                 }

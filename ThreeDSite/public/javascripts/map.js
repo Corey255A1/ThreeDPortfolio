@@ -1,5 +1,20 @@
 import { CSS3DObject } from '/javascripts/threejs/examples/jsm/renderers/CSS3DRenderer.js';
 
+var DirectionsMap = {
+    0: [5],
+    1: [1, 3],
+    2: [0, 2],
+    3: [1, 2],
+    4: [3, 2],
+    5: [0, 3],
+    6: [0, 1],
+    7: [0, 1, 2],
+    8: [0, 2, 3],
+    9: [0, 1, 3],
+    10: [1, 2, 3]
+};
+
+export var CSS3DObjectCreator;
 
 export class Map {
     constructor(map, wallwidth, wallheight) {
@@ -61,6 +76,30 @@ export class Map {
             }
         }
         return [];
+    }
+
+    getDirectionOptions(x, y) {
+        return DirectionsMap[this.map[Math.floor(y / this.WallWidth)][Math.floor(x / this.WallWidth)]];
+    }
+    getNextPoint(x, y, o) {
+        switch (o) {
+            case 0: {
+                if ((y - this.WallWidth) < 0) return undefined;
+                else return { x: x, y: y - this.WallWidth };
+            }
+            case 1: {
+                if (Math.floor((x + this.WallWidth) / this.WallWidth) >= this.map[0].length) return undefined;
+                else return { x: x + this.WallWidth, y: y};
+            }
+            case 2: {
+                if (Math.floor((y + this.WallWidth) / this.WallWidth)>=this.map.length) return undefined;
+                else return { x: x, y: y + this.WallWidth };
+            }
+            case 3: {
+                if ((x- this.WallWidth) < 0) return undefined;
+                else return { x: x - this.WallWidth, y: y };
+            }
+        }
     }
 }
 

@@ -31,11 +31,17 @@
   <ItemGroup>
     <Content Include="app.js" />
     <Content Include="public\imgs\OnlineWalkieTalkie.jpg" />
+    <Content Include="public\javascripts\camera.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\javascripts\carousel.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="public\javascripts\map.js" />
     <Content Include="public\javascripts\navigation.js" />
+    <Content Include="public\javascripts\threedpage.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\threedpage.html" />
     <Content Include="routes\index.js" />
     <Content Include="package.json" />
