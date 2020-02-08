@@ -9,7 +9,10 @@ export class CameraMover {
         this.commandList = undefined;
         this.currentCommandIdx = 0;
         this.currentCommand = undefined;
+        this.currentRouteName = "";
+        this.routeStopped = undefined;
     }
+
     getPosition() {
         return { x: this.camera.position.x, y: this.camera.position.z, o: this.heading };
     }
@@ -27,9 +30,10 @@ export class CameraMover {
         }
 
     }
-    setRoute(route) {
+    setRoute(route, routeName) {
         if (this.state !== 'stop') { return; }
         this.commandList = route;
+        this.currentRouteName = routeName;
         this.currentCommandIdx = -1;
         this.nextState();
     }
@@ -81,6 +85,12 @@ export class CameraMover {
                 }
             } break;
             case 'stop': {
+                if (this.currentRouteName !== "") {
+                    if (this.routeStopped !== undefined) {
+                        this.routeStopped(this.currentRouteName);
+                    }
+                    this.currentRouteName = "";
+                }
                 break;
             }
 

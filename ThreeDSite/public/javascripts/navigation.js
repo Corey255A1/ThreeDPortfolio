@@ -27,7 +27,7 @@ export class Navigator {
             }
             //add an initial move command
             commandList.push(this.makeCommandPoint('move', 0));
-            if (this.nextPoint(mover, finish, commandList)) {
+            if (this.nextPoint(start, mover, finish, commandList)) {
                 commandList.push(this.makeCommandPoint('stop'));
                 //Shortest by command length .. not necessarily distance
                 if (shortest === undefined) {
@@ -43,7 +43,7 @@ export class Navigator {
     }
 
     //recursively traverse through map until finding destination
-    nextPoint(mover, finish, commandList) {
+    nextPoint(start, mover, finish, commandList) {
         let next = this.map.getNextPoint(mover.x, mover.y, mover.o);
         //we have moved into the abyss, return false
         if (next === undefined) {
@@ -57,6 +57,8 @@ export class Navigator {
                 commandList.push(this.makeCommandPoint('heading', finish.o));
             }
             return true;
+        } else if (next.x === start.x && next.y === start.y) {
+            return false;
         }
         mover.x = next.x;
         mover.y = next.y;
@@ -74,7 +76,7 @@ export class Navigator {
                 next.o = d;
                 headingPop = true;
             }            
-            if (this.nextPoint(next, finish, commandList) === false) {                
+            if (this.nextPoint(start, next, finish, commandList) === false) {                
                 if (headingPop) {
                     commandList.pop(); commandList.pop();
                 }

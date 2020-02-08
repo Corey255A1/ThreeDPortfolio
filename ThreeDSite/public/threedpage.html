@@ -12,46 +12,111 @@
         <button id="home">HOME</button>
         <button id="about">ABOUT</button>
         <button id="projects">PROJECTS</button>
-        <button id="roam">ROAM</button>
+        <!--<button id="roam">ROAM</button>-->
+    </div>
+    <div class="interaction" style="display:none">
+        <button class="up interact" id="upbtn">U</button>
+        <button class="down interact" id="downbtn">D</button>
+        <button class="left interact" id="upbtn">L</button>
+        <button class="right interact" id="downbtn">R</button>
     </div>
     <div class="walloverride" id="homesection">
         <h2><span class="bg-black"><span class="wunder">Wunder</span><span class="vision">Vision</span></span> 3D Website</h2>
         Feel free to explore!
+        <div class="description">
+            <h3>Other WunderVision Sites:</h3>
+            <ul>
+                <li><a href="https://www.wundervisionenvisionthefuture.com/blog">Blog Posts</a></li>
+                <li><a href="https://corey255a1.github.io">Misc. Short Javascript Projects</a></li>
+                <li><a href="https://www.youtube.com/playlist?list=PL8hXL1QH3XwQis74zh7e5oiWwE9tWeAYe">Videos of Projects</a></li>
+                <li><a href="https://github.com/Corey255A1">GitHub Source Code</a></li>
+            </ul>
+        </div>
     </div>
     <div class="walloverride" id="aboutsection">
         <h2>About</h2>
-        Built with <a href="https://threejs.org/">Three.JS</a> using the CSS3D Renderer
+        <div class="description">
+            <p>This site is built with <a href="https://threejs.org/">Three.JS</a> using the CSS3D Renderer.</p>
+            <p>I have a experience in coding in all sorts of realms. From Robots to Desktop to Mobile to Web. C/C++, C#, Python, Javascript, and some dusty Java. MFC, WPF, UWP.</p>
+        </div>
     </div>
     <div id="projects">
         <div class="project">
+            <h2>The Wheel Of Projects</h2>
+            <p>Use the Scroll Wheel to browse some of my software projects</p>
+        </div>
+        <div class="project">
             <h2>Online Walkie Talkie</h2>
             <img src="./imgs/OnlineWalkieTalkie.jpg" />
+            <p><a href="https://www.onlinewalkietalkie.com">Check Out the Site!</a></p>
+            <div class="description">
+                <p>
+                    This is a webproject that uses a Node.JS with NGinx as the backend.
+                    The web application works by using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">WebAudio</a> to break up and send the raw audio packets to the server, which then
+                    forwards on those packets to connected clients that are on the same channel.
+                </p>
+            </div>
         </div>
         <div class="project">
             <h2>Dijkstra Algorithm Util</h2>
             <img src="./imgs/Dijkstra_Solved.jpg" />
+            <p><a href="https://github.com/Corey255A1/DijkstraCoffeeAndCode">Check out the Source at GitHub!</a></p>
+            <div class="description">
+                <p>
+                    This is a C# WPF program that I wrote to implement and visualize Dijkstra's Shortest path algorithm. Plot points, drag them around, and find the shortest path through the graph.
+                    Can also step through each step to watch the process
+                </p>
+                <p><a href="https://corey255a1.github.io/Dijkstra/Dijkstra.html">This is a less advanced javascript version!</a></p>
+            </div>
         </div>
         <div class="project">
             <h2>Edscape Editor</h2>
             <img src="./imgs/Edscape_Editor_Layout.jpg" />
+            <div class="description">
+                <p>
+                    Edscape is a school focused escape room editor and controller. Written in C# UWP for the frontend GUI and a shared .NetStandard 2.0 dll for some of the backend.
+                    It uses a very basic custom HTTP webserver since UWP doesn't ship with one. This is so that the rooms can be hosted and controlled directly off the teachers computer without the need for the internet.
+                </p>
+            </div>
         </div>
         <div class="project">
             <h2>Edscape Local Preview Controller</h2>
             <img src="./imgs/EdscapeLocalPreview.jpg" />
+            <div class="description">
+                <p>
+                    The Edscape Local Preview is an application written in C# WPF as a way to locally run the Edscape developed rooms on the same laptop. UWP has the limitation of being restricted from connecting to LocalHost servers.
+                    This application imports the Edscape room packages and runs them locally.
+                </p>
+            </div>
         </div>
         <div class="project">
             <h2>Project Time Keeper</h2>
             <img src="./imgs/TimeKeeper.jpg" />
+            <p><a href="https://github.com/Corey255A1/TimeKeeper">Github Source!</a></p>
+            <div class="description">
+                <p>Time Keeper is a C# WPF application to track the time spent on different projects in real time. Add in the project charge numbers for easy tracking. Activities can be exported to a CSV file</p>
+            </div>
         </div>
         <div class="project">
             <h2>Darwin Core KML Utility</h2>
             <img src="./imgs/DarwinCoreUtil_PlacemarkSettings.jpg" />
+            <p><a href="https://github.com/Corey255A1/DarwinCoreUtility">Github Source!</a></p>
+            <div class="description">
+                This application can import data from a <a href="https://www.tdwg.org/standards/dwc/">Darwin Core</a> style CSV and export it out in Google Earth KML. Writen in C# WPF.
+                It allows the user to customize the Google Earth Placecard and visualize the result in realtime. The data can also be configured to be grouped into folders based on the headers.</p>
+            </div>
         </div>
         <div class="project">
-            <!--<img height="500" src="./imgs/OnlineWalkieTalkie.jpg" />-->
-        </div>
-        <div class="project">
-            <!--<img height="500" src="./imgs/OnlineWalkieTalkie.jpg" />-->
+            <h2>Endless Snake Maze</h2>
+            <img src="./imgs/EndlessSnakeMaze.jpg" />
+            <p><a href="https://play.google.com/store/apps/details?id=com.endlessmaze.game&hl=en_US">Download from Google Play!</a></p>
+            <p><a href="https://github.com/Corey255A1/EndlessSnakeMaze">Here is the source code!</a></p>
+            <div class="description">
+                <p>
+                    Endless Snake Maze is a <a href="https://libgdx.badlogicgames.com/">LibGDX</a> based Android game. Using procedurally created levels, there are in theory an infinte number of levels.
+                    See how far you can get and replay the levels to get a faster time! Originally integrated with AdMob and Firebase to make it ad-supported, that was dropped after low download rate and the maintence.
+                </p>
+            </div>
         </div>
     </div>
     <script src="/javascripts/threedpage.js" type="module"></script>

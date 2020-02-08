@@ -4,9 +4,7 @@ import { CSS3DObject } from '/javascripts/threejs/examples/jsm/renderers/CSS3DRe
 import * as THREE from '/javascripts/threejs/build/three.module.js';
 export class Carousel {
 
-    constructor(scene, planesize, position, rotation, overrides) {
-        this.scene = scene;
-
+    constructor(planesize, position, rotation, overrides) {
         this.angle = Math.PI / 4;
         this.planesize = planesize;
         this.circlesize = (this.planesize / 2) / Math.tan(this.angle / 2);
@@ -32,11 +30,21 @@ export class Carousel {
         }
         this.group.position.set(position.x, 0, position.y);
         this.group.rotateY(rotation.y);
-        this.scene.add(this.group);
+        this.enabled = false;
+        this.freespin = false;
+        window.addEventListener("wheel", (e) => { this.scrollWheel(e); });
+    }
+
+    scrollWheel(e) {
+        if (this.enabled) {
+            this.group.rotateX(e.deltaY * Math.PI / 100);
+        }
     }
 
     animate() {
-        this.group.rotateX((Math.PI)/500);
+        if (this.freespin) {
+            this.group.rotateX((Math.PI) / 500);
+        }
     }
 
 }
