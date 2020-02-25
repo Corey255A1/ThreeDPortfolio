@@ -1,4 +1,5 @@
 import { CSS3DObject } from '/javascripts/threejs/examples/jsm/renderers/CSS3DRenderer.js';
+import * as THREE from '/javascripts/threejs/build/three.module.js';
 
 var DirectionsMap = {
     0: [5],
@@ -103,6 +104,11 @@ export class Map {
     }
 }
 
+const transparent = new THREE.MeshBasicMaterial();
+transparent.color.set('black');
+transparent.opacity = 0;
+transparent.blending = THREE.NoBlending;
+
 class WallSection {
     constructor(w, h, x, y, z, d, color) {
         this.domElem = document.createElement("div");
@@ -135,6 +141,9 @@ class WallSection {
         this.threejsObj.position.set(x, y, z);
         this.threejsObj.rotation.y = r;
         this.threejsObj.direction = d;
+        this.webGLObj = new THREE.Mesh(new THREE.PlaneBufferGeometry((w + 2), (h + 2)), transparent);
+        this.webGLObj.rotation.y = r;
+        this.webGLObj.position.set(x, y, z);
     }
 }
 

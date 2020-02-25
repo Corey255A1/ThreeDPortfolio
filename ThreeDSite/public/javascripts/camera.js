@@ -38,7 +38,7 @@ export class CameraMover {
         this.nextState();
     }
     setPosition(routepoint) {
-        this.camera.position.set(routepoint.x, 0, routepoint.y);
+        this.camera.position.set(routepoint.x, 100, routepoint.y);
         this.nextHeading = routepoint.o;
         this.heading = this.nextHeading;
         this.camera.rotation.y = this.heading * -(Math.PI / 2);

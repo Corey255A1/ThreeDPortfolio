@@ -37,6 +37,7 @@ export class Carousel {
 
     scrollWheel(e) {
         if (this.enabled) {
+            console.log(e.deltaY);
             this.group.rotateX(e.deltaY * Math.PI / 100);
         }
     }
